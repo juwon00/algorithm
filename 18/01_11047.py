@@ -10,7 +10,8 @@ li.sort(reverse=True)
 count = 0
 
 for coin in li:
-    count = count + k // coin
+    share = k // coin
+    count = count + share
     k = k % coin
 
 print(count)
