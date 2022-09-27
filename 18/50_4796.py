@@ -1,7 +1,7 @@
 import math # floor함수를 쓰기위해 - 소수점을 버린다
 
 n = 1
-while True: #  
+while True: # V일 중 최대한 P일 만큼 가고 나머지 일에대해 L과 비교하여 구하면 된다
     camp = list(map(int, input().split())) 
     
     if camp == [0,0,0]:
