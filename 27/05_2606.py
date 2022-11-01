@@ -26,6 +26,7 @@
 
 #Todo 위의 코드로 했는데 오류가 나서 아래 코드로 바꿨다(가져왔다)
 
+
 n=int(input()) # 컴퓨터 개수
 v=int(input()) # 연결선 개수
 graph = [[] for i in range(n+1)] # 그래프 초기화
