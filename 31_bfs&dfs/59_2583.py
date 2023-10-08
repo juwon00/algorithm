@@ -10,6 +10,13 @@ for _ in range(k):
         for j in range(m - y1 - 1, m - y2 - 1, -1):
             graph[j][i] = 1
 
+# for _ in range(K):   다른 블로그에서 본 방식이 더 좋아보여서 기록
+#     x1, y1, x2, y2 = map(int, input().split())
+#     for i in range(y1, y2):
+#         for j in range(x1, x2):
+#             graph[i][j] += 1
+
+
 dx = [-1, 1, 0, 0]
 dy = [0, 0, -1, 1]
 
