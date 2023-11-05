@@ -1,3 +1,5 @@
+# https://d-cron.tistory.com/23
+
 t = int(input())
 for _ in range(t):
     n = int(input())
