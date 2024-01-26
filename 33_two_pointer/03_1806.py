@@ -57,3 +57,15 @@ else:
 
 # 10 10
 # 1 1 1 1 1 1 1 1 1 1
+
+# 깔끔해보이는 다른 블로그 풀이
+# while True:
+#     if sum >= s:
+#         min_length = min(min_length, right - left)
+#         sum -= nums[left]
+#         left += 1
+#     elif right == n:
+#         break
+#     else:
+#         sum += nums[right]
+#         right += 1
