@@ -1,0 +1,25 @@
+select y as YEAR, m as MONTH, GENDER, count(*) as USERS
+from (
+    select YEAR(SALES_DATE) as y, MONTH(SALES_DATE) as m, USER_ID, count(*)
+    from USER_INFO
+    join ONLINE_SALE
+        using(USER_ID)
+    where GENDER is not null
+    group by YEAR(SALES_DATE), MONTH(SALES_DATE), USER_ID
+    order by USER_ID, YEAR(SALES_DATE), MONTH(SALES_DATE)
+) as t
+join USER_INFO
+    using(USER_ID)
+group by y, m, GENDER
+order by YEAR, MONTH, GENDER
+
+
+-- 더 간단한 다른분의 풀이
+SELECT YEAR(SALES_DATE) AS YEAR, MONTH(SALES_DATE) AS MONTH,
+       GENDER, COUNT(DISTINCT S.USER_ID) AS USERS
+FROM ONLINE_SALE AS S
+JOIN USER_INFO AS I
+ON S.USER_ID = I.USER_ID
+GROUP BY 1, 2, 3
+HAVING GENDER IS NOT NULL
+ORDER BY 1, 2, 3;
