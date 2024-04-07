@@ -1,5 +1,3 @@
-import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 class Solution {
@@ -10,7 +8,7 @@ class Solution {
         // System.out.println("plans = " + Arrays.deepToString(plans));
 
         Stack<String> subject = new Stack<>();
-        Stack<LocalTime> time = new Stack<>();
+        Stack<Integer> time = new Stack<>();
 
         for (String[] plan : plans) {
 
@@ -18,23 +16,23 @@ class Solution {
             // System.out.println("subject = " + subject);
             // System.out.println("time = " + time);
 
-            LocalTime startTime = LocalTime.parse(plan[1], DateTimeFormatter.ofPattern("HH:mm"));
+            Integer startTime = convertToMinutes(plan[1]);
             // System.out.println("startTime = " + startTime);
 
             while (true) {
                 if (!time.isEmpty()) {
-                    LocalTime peekTime = time.peek();
+                    Integer peekTime = time.peek();
                     // System.out.println("peekTime = " + peekTime);
 
-                    int comparison = startTime.compareTo(peekTime);
+                    int comparison = startTime - peekTime;
                     // System.out.println("comparison = " + comparison);
 
                     if (comparison < 0) {
 
-                        time.replaceAll(localTime -> localTime.plusMinutes(Integer.parseInt(plan[2])));
+                        time.replaceAll(localTime -> localTime + Integer.parseInt(plan[2]));
 
                         subject.push(plan[0]);
-                        time.push(startTime.plusMinutes(Integer.parseInt(plan[2])));
+                        time.push(startTime + Integer.parseInt(plan[2]));
                         break;
                     } else {
                         String subjectPop = subject.pop();
@@ -43,7 +41,7 @@ class Solution {
                     }
                 } else {
                     subject.add(plan[0]);
-                    time.add(LocalTime.parse(plan[1], DateTimeFormatter.ofPattern("HH:mm")).plusMinutes(Integer.parseInt(plan[2])));
+                    time.add(convertToMinutes(plan[1]) + Integer.parseInt(plan[2]));
                     break;
                 }
             }
@@ -57,5 +55,10 @@ class Solution {
         // System.out.println("result = " + result);
 
         return result.toArray(new String[0]);
+    }
+
+    private static Integer convertToMinutes(String time) {
+        String[] t = time.split(":");
+        return Integer.parseInt(t[0]) * 60 + Integer.parseInt(t[1]);
     }
 }
